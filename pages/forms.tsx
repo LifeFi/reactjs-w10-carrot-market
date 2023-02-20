@@ -9,7 +9,13 @@ interface LoginForm {
 }
 
 export default function Forms() {
-  const { register, handleSubmit } = useForm<LoginForm>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginForm>({
+    mode: "onBlur",
+  });
   const onValid = (data: LoginForm) => {
     console.log("I'm valid");
   };
@@ -18,7 +24,7 @@ export default function Forms() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onValid, onInvalid)}>
+    <form onSubmit={handleSubmit(onValid, onInvalid)} className="flex flex-col">
       <input
         {...register("username", {
           required: "Username is required",
@@ -30,16 +36,26 @@ export default function Forms() {
         type="text"
         placeholder="Username"
       ></input>
+      {errors.username?.message}
       <input
-        {...register("email", { required: "Email is required" })}
+        {...register("email", {
+          required: "Email is required",
+          validate: {
+            notGmail: (value) =>
+              !value.includes("@gmail.com") || "Gmail is not allowed",
+          },
+        })}
         type="email"
         placeholder="Email"
+        className={`${Boolean(errors.email) ? "border-red-500" : ""}`}
       ></input>
+      {errors.email?.message}
       <input
         {...register("password", { required: true })}
         type="password"
         placeholder="Password"
       ></input>
+      {errors.password?.message}
       <input type="submit" value="Create Account" />
     </form>
   );
