@@ -33,24 +33,22 @@ export default function Forms() {
         onChange={onUsernameChange}
         type="text"
         placeholder="Username"
-        required
-        minLength={5}
       ></input>
       <input
         value={email}
         onChange={onEmailChange}
         type="email"
         placeholder="Email"
-        required
       ></input>
+      {emailErrors}
       <input
         value={password}
         onChange={onPasswordChange}
         type="password"
         placeholder="Password"
-        required
       ></input>
       <input type="submit" value="Create Account" />
+      {formErrors}
     </form>
   );
 }
