@@ -1,54 +1,24 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export default function Forms() {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [formErrors, setFormErrors] = useState("");
-  const [emailErrors, setEmailErrors] = useState("");
+  const { register, watch } = useForm();
 
-  const onUsernameChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
-    setUsername(event.currentTarget.value);
-  };
-  const onEmailChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
-    setEmail(event.currentTarget.value);
-  };
-  const onPasswordChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
-    setPassword(event.currentTarget.value);
-  };
-
-  const onSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (username === "" || email === "" || password === "") {
-      setFormErrors("all Fields are required");
-    }
-
-    console.log(username, email, password);
-  };
-
+  console.log(watch());
   return (
-    <form onSubmit={onSubmit}>
+    <form>
       <input
-        value={username}
-        onChange={onUsernameChange}
+        {...register("username")}
         type="text"
         placeholder="Username"
       ></input>
+      <input {...register("email")} type="email" placeholder="Email"></input>
       <input
-        value={email}
-        onChange={onEmailChange}
-        type="email"
-        placeholder="Email"
-      ></input>
-      {emailErrors}
-      <input
-        value={password}
-        onChange={onPasswordChange}
+        {...register("password")}
         type="password"
         placeholder="Password"
       ></input>
       <input type="submit" value="Create Account" />
-      {formErrors}
     </form>
   );
 }
