@@ -2,21 +2,29 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function Forms() {
-  const { register, watch } = useForm();
-
-  console.log(watch());
+  const { register, handleSubmit } = useForm();
+  const onValid = () => {
+    console.log("I'm valid");
+  };
   return (
-    <form>
+    <form onSubmit={handleSubmit(onValid)}>
       <input
-        {...register("username")}
+        {...register("username", { required: true })}
         type="text"
         placeholder="Username"
+        required
       ></input>
-      <input {...register("email")} type="email" placeholder="Email"></input>
       <input
-        {...register("password")}
+        {...register("email", { required: true })}
+        type="email"
+        placeholder="Email"
+        required
+      ></input>
+      <input
+        {...register("password", { required: true })}
         type="password"
         placeholder="Password"
+        required
       ></input>
       <input type="submit" value="Create Account" />
     </form>
