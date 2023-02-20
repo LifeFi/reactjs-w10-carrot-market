@@ -6,23 +6,33 @@ interface LoginForm {
   username: string;
   password: string;
   email: string;
+  errors?: string;
 }
 
 export default function Forms() {
   const {
     register,
     handleSubmit,
+    watch,
+    setValue,
+    setError,
+    reset,
+    resetField,
     formState: { errors },
   } = useForm<LoginForm>({
     mode: "onBlur",
   });
   const onValid = (data: LoginForm) => {
     console.log("I'm valid");
+    setError("errors", { message: "Backend is offline" });
+    // reset();
+    resetField("password");
   };
   const onInvalid = (errors: FieldErrors) => {
     console.log(errors);
   };
 
+  console.log(watch("email"));
   return (
     <form onSubmit={handleSubmit(onValid, onInvalid)} className="flex flex-col">
       <input
