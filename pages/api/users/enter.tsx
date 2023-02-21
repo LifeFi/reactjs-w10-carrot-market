@@ -1,6 +1,9 @@
+import twilio from "twilio";
 import { NextApiRequest, NextApiResponse } from "next";
 import client from "@libs/server/client";
 import withHandler, { ResponseType } from "@libs/server/withHandler";
+
+const twilioClient = twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 
 async function handler(
   req: NextApiRequest,
@@ -27,6 +30,16 @@ async function handler(
       },
     },
   });
+
+  if (phone) {
+    const message = await twilioClient.messages.create({
+      messagingServiceSid: process.env.TWILIO_MSID,
+      to: process.env.MY_PHONE!, // 느낌표(!)를 사용하여, 확정 할당을 전당함. ( 환경 변수는 실행전에 확인하지 못하는 듯 )
+      body: `Your login token is ${payload}`,
+    });
+    console.log(message);
+  }
+
   console.log(token);
 
   return res.json({
