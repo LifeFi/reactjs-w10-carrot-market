@@ -9,7 +9,7 @@ export default function useUser() {
       .then((res) => res.json())
       .then((data) => {
         if (!data.ok) {
-          return router.push("/enter");
+          return router.replace("/enter"); // 뒤로가기를 못하게 하려면 replace 사용하는 것이 좋다. 히스토리에 안남음.
         }
         setUser(data.profile);
       });
