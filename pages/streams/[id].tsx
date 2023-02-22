@@ -4,16 +4,33 @@ import Message from "@components/message";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import { Stream } from "@prisma/client";
+import { useForm } from "react-hook-form";
+import useMutation from "@libs/client/useMutation";
 
 interface StreamResponse {
   ok: true; //일부러 boolean 을 쓰지 않고 값을 넣었음. 유저 실수를 제대로 처리하기 위함.
   stream: Stream;
 }
+interface MessageForm {
+  message: string;
+}
+
 const Stream: NextPage = () => {
   const router = useRouter();
+  const { register, handleSubmit, reset } = useForm<MessageForm>();
+
   const { data } = useSWR<StreamResponse>(
     router.query.id ? `/api/streams/${router.query.id}` : null
   );
+  const [sendMessage, { loading, data: sendMessageData }] = useMutation(
+    `/api/streams/${router.query.id}/messages`
+  );
+  const onValid = (form: MessageForm) => {
+    if (loading) return;
+    reset();
+    sendMessage(form);
+  };
+
   return (
     <Layout canGoBack>
       <div className="space-y-4 py-10  px-4">
@@ -34,10 +51,15 @@ const Stream: NextPage = () => {
             <Message message="I want ￦20,000" reversed />
             <Message message="미쳤어" />
           </div>
+
           <div className="fixed inset-x-0 bottom-0  bg-white py-2">
-            <div className="relative mx-auto flex w-full  max-w-md items-center">
+            <form
+              onSubmit={handleSubmit(onValid)}
+              className="relative mx-auto flex w-full  max-w-md items-center"
+            >
               <input
                 type="text"
+                {...register("message", { required: true })}
                 className="w-full rounded-full border-gray-300 pr-12 shadow-sm focus:border-orange-500 focus:outline-none focus:ring-orange-500"
               />
               <div className="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
@@ -45,7 +67,7 @@ const Stream: NextPage = () => {
                   &rarr;
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
