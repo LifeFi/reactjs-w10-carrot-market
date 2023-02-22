@@ -38,7 +38,7 @@ const Stream: NextPage = () => {
   const { data, mutate } = useSWR<StreamResponse>(
     router.query.id ? `/api/streams/${router.query.id}` : null,
     {
-      refreshInterval: 1000,
+      refreshInterval: 1000, // 실시간처럼 보이기 위하 1초마다 API 호출
     }
   );
   const [sendMessage, { loading, data: sendMessageData }] = useMutation(

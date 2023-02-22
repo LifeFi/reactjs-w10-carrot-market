@@ -29,7 +29,10 @@ async function handler(
     res.json({ ok: true, stream });
   }
   if (req.method === "GET") {
-    const streams = await client.stream.findMany(); //추후 페이징 처리 함.
+    const streams = await client.stream.findMany({
+      take: 10,
+      skip: 0,
+    });
     res.json({ ok: true, streams });
   }
 }
