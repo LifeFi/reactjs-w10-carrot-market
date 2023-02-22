@@ -33,7 +33,24 @@ async function handler(
   }
 
   if (req.method === "GET") {
+    const {
+      query: { latitude, longitude },
+    } = req;
+    const parsedLatitude = parseFloat(latitude?.toString() + ""); // undifined 이슈 떄문에 추가함.
+    const parsedLongitude = parseFloat(longitude?.toString() + "");
+
     const posts = await client.post.findMany({
+      where: {
+        latitude: {
+          gte: parsedLatitude - 0.01,
+          lte: parsedLatitude + 0.01,
+        },
+        longitude: {
+          gte: parsedLongitude - 0.01,
+          lte: parsedLongitude + 0.01,
+        },
+      },
+
       include: {
         user: {
           select: {
