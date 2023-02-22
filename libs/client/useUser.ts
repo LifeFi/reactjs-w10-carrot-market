@@ -1,11 +1,17 @@
+import { User } from "@prisma/client";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 
 const PUBLIC = ["/enter"];
 
+interface ProfileResponse {
+  ok: boolean;
+  profile: User;
+}
+
 export default function useUser(pathname?: string) {
-  const { data, error } = useSWR("/api/users/me");
+  const { data, error } = useSWR<ProfileResponse>("/api/users/me");
 
   const isPublic = !pathname ? false : Boolean(PUBLIC.includes(pathname));
   const router = useRouter();
