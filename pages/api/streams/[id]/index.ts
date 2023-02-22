@@ -15,6 +15,19 @@ async function handler(
     where: {
       id: Number(id?.toString()),
     },
+    include: {
+      messages: {
+        select: {
+          message: true,
+          user: {
+            select: {
+              id: true,
+              avatar: true,
+            },
+          },
+        },
+      },
+    },
   });
 
   res.json({ ok: true, stream });
