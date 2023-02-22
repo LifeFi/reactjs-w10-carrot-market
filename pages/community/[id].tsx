@@ -79,8 +79,9 @@ const CommunityPostDetail: NextPage = () => {
   useEffect(() => {
     if (answerData && answerData.ok) {
       reset();
+      mutate(); // answer 작성 이후, 자동으로 데이터 리프레시 하기 위해서 간편한 방법 적용
     }
-  }, [answerData, reset]);
+  }, [answerData, reset, mutate]);
 
   return (
     <Layout canGoBack>
