@@ -15,6 +15,7 @@ async function handler(
   const user = phone ? { phone } : email ? { email } : null;
   if (!user) return res.status(400).json({ ok: false });
   const payload = Math.floor(100000 + Math.random() * 900000) + "";
+  // const payload = 0 + "";
 
   const token = await client.token.create({
     data: {
