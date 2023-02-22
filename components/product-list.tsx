@@ -30,6 +30,6 @@ export default function ProductList({ kind }: ProductListProps) {
       ))}
     </>
   ) : (
-    "Loading..."
+    <>Loading...</>
   );
 }
