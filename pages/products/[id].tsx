@@ -136,16 +136,16 @@ const ItemDetail: NextPage = () => {
                 <Link
                   key={product.id}
                   legacyBehavior
-                  href={`/products/${data.product.id}`}
+                  href={`/products/${product.id}`}
                 >
                   <a>
                     {/* <div className="mb-4 h-56 w-full bg-slate-300" /> */}
 
                     <div className="relative h-56">
                       <Image
-                        alt={data.product.name}
+                        alt={product.name}
                         fill
-                        src={`https://imagedelivery.net/OBj4-AubflPByVfhX39jxA/${data.product.image}/public`}
+                        src={`https://imagedelivery.net/OBj4-AubflPByVfhX39jxA/${product.image}/public`}
                         className="rounded-lg object-cover"
                       />
                     </div>
