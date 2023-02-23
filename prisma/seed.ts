@@ -1,5 +1,16 @@
 import { PrismaClient } from "@prisma/client";
 
+interface streamData {
+  data: {
+    name: string;
+    description: string;
+    price: number;
+    user: {
+      id: number;
+    };
+  };
+}
+
 const client = new PrismaClient();
 
 async function main() {
@@ -9,6 +20,9 @@ async function main() {
         name: String(item),
         description: String(item),
         price: item,
+        cloudflareId: "xxxx",
+        cloudflareUrl: "xxxx",
+        cloudflareKey: "xxxx",
         user: {
           connect: {
             id: 14, // 실제 존재하는 ID로 해야 함.
