@@ -49,7 +49,7 @@ const ItemDetail: NextPage = () => {
                 alt={data.product.name}
                 fill
                 src={`https://imagedelivery.net/OBj4-AubflPByVfhX39jxA/${data.product.image}/public`}
-                className="h-96 bg-slate-300 object-cover"
+                className="h-96 rounded-lg bg-slate-300 object-cover"
               />
             </div>
             <div className="flex cursor-pointer items-center space-x-3 border-t border-b py-3">
@@ -146,7 +146,7 @@ const ItemDetail: NextPage = () => {
                         alt={data.product.name}
                         fill
                         src={`https://imagedelivery.net/OBj4-AubflPByVfhX39jxA/${data.product.image}/public`}
-                        className="object-cover"
+                        className="rounded-lg object-cover"
                       />
                     </div>
 

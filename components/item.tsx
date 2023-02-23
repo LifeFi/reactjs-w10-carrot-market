@@ -27,7 +27,7 @@ export default function Item({
               alt={title}
               src={`https://imagedelivery.net/OBj4-AubflPByVfhX39jxA/${image}/avatar`}
               fill
-              className="object-cover"
+              className="rounded-md object-cover"
             />
           </div>
 
