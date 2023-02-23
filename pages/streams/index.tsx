@@ -21,6 +21,7 @@ const Stream: NextPage = () => {
             <a className="block px-4  pt-4">
               <div className="relative aspect-video w-full overflow-hidden rounded-md bg-slate-300 shadow-sm">
                 <Image
+                  alt={stream.name}
                   fill
                   src={`https://videodelivery.net/${stream.cloudflareId}/thumbnails/thumbnail.jpg?height=320`}
                 />

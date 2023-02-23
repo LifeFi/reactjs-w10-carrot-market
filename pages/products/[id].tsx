@@ -46,6 +46,7 @@ const ItemDetail: NextPage = () => {
           <div className="mb-8">
             <div className="relative pb-96">
               <Image
+                alt={data.product.name}
                 fill
                 src={`https://imagedelivery.net/OBj4-AubflPByVfhX39jxA/${data.product.image}/public`}
                 className="h-96 bg-slate-300 object-cover"
@@ -54,6 +55,7 @@ const ItemDetail: NextPage = () => {
             <div className="flex cursor-pointer items-center space-x-3 border-t border-b py-3">
               {data.product.user.avatar ? (
                 <Image
+                  alt={data.product.user.name}
                   width={48}
                   height={48}
                   src={`https://imagedelivery.net/OBj4-AubflPByVfhX39jxA/${data.product.user.avatar}/avatar`}

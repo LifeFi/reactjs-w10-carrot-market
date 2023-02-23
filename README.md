@@ -36,3 +36,10 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## 코드 챌린지
+
+1. 채팅방 model
+2. 메시지 보내기 기능
+3. 물건 예약 버튼(누르면 예약내역 생성)
+4. 예약 날짜 지나면 거래 후기 남길 수 있도록 거래 후기 버튼
