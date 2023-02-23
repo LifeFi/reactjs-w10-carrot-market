@@ -139,7 +139,17 @@ const ItemDetail: NextPage = () => {
                   href={`/products/${data.product.id}`}
                 >
                   <a>
-                    <div className="mb-4 h-56 w-full bg-slate-300" />
+                    {/* <div className="mb-4 h-56 w-full bg-slate-300" /> */}
+
+                    <div className="relative h-56">
+                      <Image
+                        alt={data.product.name}
+                        fill
+                        src={`https://imagedelivery.net/OBj4-AubflPByVfhX39jxA/${data.product.image}/public`}
+                        className="object-cover"
+                      />
+                    </div>
+
                     <h3 className="-mb-1 text-gray-700">{product.name}</h3>
                     <span className="text-sm font-medium text-gray-900">
                       ${product.price}
